@@ -55,8 +55,8 @@ export default async function decorate(block) {
   const title = document.createElement('div');
   title.className = 'sidebar-nav-title sidebar-nav-title--logo';
   const logo = document.createElement('img');
-  logo.src = `${window.hlx?.codeBasePath || ''}/icons/pl-logo.png`;
-  logo.alt = 'Premier League';
+  logo.src = `${window.hlx?.codeBasePath || ''}/icons/bhf-logo.svg`;
+  logo.alt = 'British Heart Foundation';
   title.appendChild(logo);
   
   header.appendChild(title);
