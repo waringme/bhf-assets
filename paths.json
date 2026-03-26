@@ -5,6 +5,6 @@
     "/content/bhf-assets/metadata:/metadata.json"
   ],
   "includes": [
-    "/content/premierleaguebp/"
+    "/content/bhf-assets/"
   ]
 }
