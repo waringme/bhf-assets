@@ -1,8 +1,8 @@
 {
   "mappings": [
-    "/content/premierleaguebp/:/",
-    "/content/premierleaguebp/configuration:/.helix/config.json",
-    "/content/premierleaguebp/metadata:/metadata.json"
+    "/content/bhf-assets/:/",
+    "/content/bhf-assets/configuration:/.helix/config.json",
+    "/content/bhf-assets/metadata:/metadata.json"
   ],
   "includes": [
     "/content/premierleaguebp/"
