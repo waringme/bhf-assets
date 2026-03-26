@@ -1,0 +1,1110 @@
+[
+  {
+    "id": "page-metadata",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "jcr:title",
+        "label": "Title"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "jcr:description",
+        "label": "Description"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "keywords",
+        "multi": true,
+        "label": "Keywords"
+      }
+    ]
+  },
+  {
+    "id": "image",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Alt Text"
+      },
+      {
+        "component": "select",
+        "name": "imageSize",
+        "label": "Size",
+        "options": [
+          {
+            "name": "default",
+            "value": ""
+          },
+          {
+            "name": "small",
+            "value": "small"
+          },
+          {
+            "name": "medium",
+            "value": "medium"
+          },
+          {
+            "name": "large",
+            "value": "large"
+          },
+          {
+            "name": "full-width",
+            "value": "full-width"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "title",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "select",
+        "name": "titleType",
+        "label": "Title Type",
+        "options": [
+          {
+            "name": "h1",
+            "value": "h1"
+          },
+          {
+            "name": "h2",
+            "value": "h2"
+          },
+          {
+            "name": "h3",
+            "value": "h3"
+          },
+          {
+            "name": "h4",
+            "value": "h4"
+          },
+          {
+            "name": "h5",
+            "value": "h5"
+          },
+          {
+            "name": "h6",
+            "value": "h6"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "text",
+    "fields": [
+      {
+        "component": "select",
+        "name": "textAlign",
+        "label": "Text Alignment",
+        "valueType": "string",
+        "value": "",
+        "options": [
+          {
+            "name": "Left",
+            "value": ""
+          },
+          {
+            "name": "Center",
+            "value": "center"
+          },
+          {
+            "name": "Right",
+            "value": "right"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "button",
+    "fields": [
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link"
+      },
+      {
+        "component": "text",
+        "name": "linkText",
+        "label": "Text"
+      },
+      {
+        "component": "text",
+        "name": "linkTitle",
+        "label": "Title"
+      },
+      {
+        "component": "select",
+        "name": "linkType",
+        "label": "Type",
+        "options": [
+          {
+            "name": "default",
+            "value": ""
+          },
+          {
+            "name": "primary",
+            "value": "primary"
+          },
+          {
+            "name": "secondary",
+            "value": "secondary"
+          },
+          {
+            "name": "tertiary",
+            "value": "tertiary"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "section",
+    "fields": [
+      {
+        "component": "text",
+        "name": "name",
+        "label": "Section Name",
+        "description": "The label shown for this section in the Content Tree"
+      },
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Highlight",
+            "value": "highlight"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "accordion-item",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "description": "The clickable title of this accordion item"
+      },
+      {
+        "component": "richtext",
+        "name": "content",
+        "label": "Content",
+        "description": "The content displayed when the accordion is expanded"
+      }
+    ]
+  },
+  {
+    "id": "action-button",
+    "fields": [
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "label",
+        "value": "Button",
+        "label": "Label"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "value": "",
+        "label": "Title"
+      },
+      {
+        "component": "select",
+        "name": "style",
+        "label": "Style",
+        "valueType": "string",
+        "value": "default-button",
+        "options": [
+          {
+            "name": "Default",
+            "value": "default-button"
+          },
+          {
+            "name": "Secondary",
+            "value": "default-button-secondary"
+          },
+          {
+            "name": "Dark",
+            "value": "default-button-dark"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "asset-card",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Card Title",
+        "description": "The title/label displayed on the card"
+      },
+      {
+        "component": "select",
+        "name": "titleType",
+        "label": "Title Type",
+        "options": [
+          {
+            "name": "H3",
+            "value": "h3"
+          },
+          {
+            "name": "H4",
+            "value": "h4"
+          },
+          {
+            "name": "H5",
+            "value": "h5"
+          },
+          {
+            "name": "H6",
+            "value": "h6"
+          }
+        ]
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Card Image",
+        "multi": false,
+        "description": "The image displayed on the card"
+      },
+      {
+        "component": "select",
+        "name": "imageDisplay",
+        "label": "Image Display",
+        "description": "How to display the image on the card",
+        "options": [
+          {
+            "name": "Centered (default)",
+            "value": "centered"
+          },
+          {
+            "name": "Full Background",
+            "value": "fullbackground"
+          }
+        ]
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link",
+        "description": "The destination when clicking the card"
+      }
+    ]
+  },
+  {
+    "id": "asset-search",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "deliveryUrl",
+        "label": "Delivery URL",
+        "description": "AEM Dynamic Media delivery URL (e.g., https://delivery-pXXXXX-eXXXXX.adobeaemcloud.com)"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "runtimeEndpoint",
+        "label": "Runtime Endpoint",
+        "description": "Adobe I/O Runtime get-token endpoint URL (e.g., https://xxxxx.adobeioruntime.net/api/v1/web/sage-portal/get-token)"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "clientId",
+        "label": "Client ID",
+        "description": "X-Api-Key value for API authentication"
+      },
+      {
+        "component": "number",
+        "valueType": "number",
+        "name": "pageSize",
+        "label": "Page Size",
+        "description": "Number of assets to display per page (default: 20)"
+      }
+    ]
+  },
+  {
+    "id": "category-pill",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "label",
+        "label": "Label",
+        "description": "Display text for the category pill"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "labelValue",
+        "label": "Filter Value",
+        "description": "Value to filter by when selected (leave empty to use label)"
+      }
+    ]
+  },
+  {
+    "id": "card",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "ctastyle",
+        "label": "CTA Style",
+        "valueType": "string",
+        "value": "button",
+        "options": [
+          {
+            "name": "Primary Button",
+            "value": "button"
+          },
+          {
+            "name": "Secondary Button",
+            "value": "button-secondary"
+          },
+          {
+            "name": "Dark Button",
+            "value": "button-dark"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "carousel",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "card",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "color-palette",
+    "fields": [
+      {
+        "component": "text",
+        "name": "label",
+        "label": "Label",
+        "valueType": "string",
+        "description": "Optional label to display below the color swatches (e.g., 'Colour', 'Primary Colors')"
+      }
+    ]
+  },
+  {
+    "id": "color-swatch",
+    "fields": [
+      {
+        "component": "text",
+        "name": "color",
+        "label": "Color Code",
+        "valueType": "string",
+        "required": true,
+        "description": "Hex color value (e.g., #004A8F, #6B7280, #C5C5C5)"
+      }
+    ]
+  },
+  {
+    "id": "columns",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "number",
+        "name": "columns",
+        "value": "",
+        "label": "Columns"
+      },
+      {
+        "component": "text",
+        "valueType": "number",
+        "name": "rows",
+        "value": "",
+        "label": "Rows"
+      }
+    ]
+  },
+  {
+    "id": "dynamic-media-image",
+    "fields": [
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "image",
+        "label": "Image",
+        "configUrl": "/content/dam/config/image.config.json",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "imageTitle",
+        "label": "Alt Text",
+        "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "rotate",
+        "value": "",
+        "label": "Rotate",
+        "description": "Select the rotation which will rotate the image.",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "None",
+            "value": ""
+          },
+          {
+            "name": "30",
+            "value": "30"
+          },
+          {
+            "name": "45",
+            "value": "45"
+          },
+          {
+            "name": "60",
+            "value": "60"
+          },
+          {
+            "name": "90",
+            "value": "90"
+          },
+          {
+            "name": "120",
+            "value": "120"
+          },
+          {
+            "name": "160",
+            "value": "160"
+          },
+          {
+            "name": "180",
+            "value": "180"
+          },
+          {
+            "name": "230",
+            "value": "230"
+          },
+          {
+            "name": "270",
+            "value": "270"
+          },
+          {
+            "name": "300",
+            "value": "300"
+          },
+          {
+            "name": "330",
+            "value": "330"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "flip",
+        "value": "",
+        "label": "Flip",
+        "description": "Select the flip for the image either vertical or horizontal or vertical & horizontal",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "None",
+            "value": ""
+          },
+          {
+            "name": "Vertical",
+            "value": "v"
+          },
+          {
+            "name": "Horizontal",
+            "value": "h"
+          },
+          {
+            "name": "Horizontal & Vertical",
+            "value": "hv"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "name": "crop",
+        "value": "",
+        "label": "Crop",
+        "description": "Crop the final image using four values: left, top, width, and height, all in percentages. For example, 10p,10p,50p,50p means crop the image starting 10% from the left and top, and take 50% of the image's width and height",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "dynamic-media-video",
+    "fields": [
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "video",
+        "label": "Video",
+        "configUrl": "/content/dam/config/video.config.json",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "videoTitle",
+        "label": "Video Title / Alt Text",
+        "description": "Accessible title for the video",
+        "valueType": "string"
+      },
+      {
+        "component": "boolean",
+        "name": "autoplay",
+        "value": false,
+        "label": "Autoplay",
+        "description": "Automatically start playing the video when loaded (will be muted for browser compatibility)",
+        "valueType": "boolean"
+      },
+      {
+        "component": "boolean",
+        "name": "loop",
+        "value": false,
+        "label": "Loop",
+        "description": "Loop the video continuously",
+        "valueType": "boolean"
+      },
+      {
+        "component": "boolean",
+        "name": "muted",
+        "value": false,
+        "label": "Muted",
+        "description": "Start the video muted",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "id": "embed-adaptive-form",
+    "fields": [
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "formPath",
+        "value": "",
+        "label": "Form Path",
+        "validation": {
+          "rootPath": "/content/forms/af"
+        }
+      }
+    ]
+  },
+  {
+    "id": "fragment",
+    "fields": [
+      {
+        "component": "aem-content",
+        "name": "reference",
+        "label": "Reference"
+      }
+    ]
+  },
+  {
+    "id": "hero-slide",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "content",
+        "label": "Content",
+        "valueType": "string",
+        "description": "Slide content including title, description and CTA"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image/Graphic",
+        "multi": false,
+        "description": "The image or graphic shown on the right side"
+      }
+    ]
+  },
+  {
+    "id": "hero",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Alt",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "iframe",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "iframeUrl",
+        "value": "",
+        "label": "iFrame URL",
+        "description": "Please provide a URL to an iFrame app."
+      }
+    ]
+  },
+  {
+    "id": "media",
+    "fields": [
+      {
+        "component": "select",
+        "name": "imagePosition",
+        "value": "left",
+        "label": "Image Position",
+        "options": [
+          {
+            "name": "Left",
+            "value": "left"
+          },
+          {
+            "name": "Right",
+            "value": "right"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "quick-link",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "text",
+        "label": "Link Text",
+        "description": "The text displayed on the button"
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link URL",
+        "description": "The destination URL"
+      }
+    ]
+  },
+  {
+    "id": "quote",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "quotation",
+        "value": "",
+        "label": "Quotation"
+      },
+      {
+        "component": "richtext",
+        "name": "attribution",
+        "value": "",
+        "label": "Attribution",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "search",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "searchPlaceholder",
+        "label": "Placeholder Text",
+        "value": "What are you looking for?",
+        "description": "Placeholder text shown in the search input"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "searchButton",
+        "label": "Button Text",
+        "value": "Search",
+        "description": "Text displayed on the search button"
+      }
+    ]
+  },
+  {
+    "id": "separator",
+    "fields": [
+      {
+        "component": "select",
+        "name": "style",
+        "label": "Style",
+        "valueType": "string",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Light",
+            "value": "light"
+          },
+          {
+            "name": "Dark",
+            "value": "dark"
+          },
+          {
+            "name": "Hidden",
+            "value": "hidden"
+          },
+          {
+            "name": "Sky Gradient",
+            "value": "gradient"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "spacing",
+        "label": "Spacing",
+        "valueType": "string",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Small",
+            "value": "small"
+          },
+          {
+            "name": "Medium",
+            "value": "medium"
+          },
+          {
+            "name": "Large",
+            "value": "large"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tabs",
+    "fields": [
+      {
+        "component": "select",
+        "name": "tabsstyle",
+        "label": "Tabs Style",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Card Style",
+            "value": "card-style-tab"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tabs-item",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "value": "",
+        "label": "Tab Title"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "content_heading",
+        "value": "",
+        "label": "Heading"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "content_headingType",
+        "value": "",
+        "label": "Heading Type",
+        "options": [
+          {
+            "name": "H3",
+            "value": "h3"
+          },
+          {
+            "name": "H4",
+            "value": "h4"
+          },
+          {
+            "name": "H5",
+            "value": "h5"
+          },
+          {
+            "name": "H6",
+            "value": "h6"
+          }
+        ]
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "content_image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "content_richtext",
+        "value": "",
+        "label": "Content",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "teaser",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "value": "Your text will show here.",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "select",
+        "name": "teaserStyle",
+        "value": "image",
+        "label": "Style",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Video",
+            "value": "video"
+          },
+          {
+            "name": "Image",
+            "value": "image"
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "label": "Video Properties",
+        "name": "videoProperties",
+        "valueType": "string",
+        "condition": {
+          "===": [
+            {
+              "var": "teaserStyle"
+            },
+            "video"
+          ]
+        },
+        "fields": [
+          {
+            "component": "text",
+            "valueType": "string",
+            "name": "videoReference",
+            "label": "Video Reference",
+            "multi": false,
+            "description": "Provide a URL for the video background."
+          },
+          {
+            "component": "select",
+            "name": "videoBehavior",
+            "value": "autoplay",
+            "label": "Video Behavior (on load)",
+            "valueType": "string",
+            "options": [
+              {
+                "name": "Autoplay",
+                "value": "autoplay"
+              },
+              {
+                "name": "Pause",
+                "value": "pause"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "label": "Image Properties",
+        "name": "imageProperties",
+        "valueType": "string",
+        "condition": {
+          "===": [
+            {
+              "var": "teaserStyle"
+            },
+            "image"
+          ]
+        },
+        "fields": [
+          {
+            "component": "reference",
+            "valueType": "string",
+            "name": "imageRef",
+            "label": "Image",
+            "multi": false
+          },
+          {
+            "component": "text",
+            "valueType": "string",
+            "name": "alt",
+            "value": "Default alt",
+            "label": "Alt Text"
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "label": "Button Properties",
+        "name": "buttonProperties",
+        "valueType": "string",
+        "fields": [
+          {
+            "component": "text",
+            "valueType": "string",
+            "name": "buttonText",
+            "value": "Button",
+            "label": "Button Text"
+          },
+          {
+            "component": "aem-content",
+            "name": "btn-link",
+            "label": "Button Link",
+            "valueType": "string",
+            "rootPath": "",
+            "description": "Path to linked AEM content"
+          },
+          {
+            "component": "select",
+            "name": "ctastyle",
+            "label": "CTA Style",
+            "valueType": "string",
+            "value": "button",
+            "options": [
+              {
+                "name": "Default Button",
+                "value": "default"
+              },
+              {
+                "name": "Primary Button",
+                "value": "button"
+              },
+              {
+                "name": "Secondary Button",
+                "value": "button-secondary"
+              },
+              {
+                "name": "Dark Button",
+                "value": "button-dark"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "component": "boolean",
+        "label": "Enable Swoosh Effect",
+        "description": "Enable Circular effect on the component",
+        "name": "useSwoosh",
+        "value": "true",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "id": "video-background",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "video",
+        "label": "Video URL",
+        "description": "URL to the video file (e.g. .mp4). Plays in a loop as a decorative background."
+      }
+    ]
+  },
+  {
+    "id": "video",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "required": true,
+        "name": "videoUrl",
+        "label": "Video Url"
+      }
+    ]
+  }
+]

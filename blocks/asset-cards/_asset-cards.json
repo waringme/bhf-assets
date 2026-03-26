@@ -1,0 +1,109 @@
+{
+  "definitions": [
+    {
+      "title": "Asset Cards",
+      "id": "asset-cards",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Asset Cards",
+              "filter": "asset-cards"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Asset Card",
+      "id": "asset-card",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Asset Card",
+              "model": "asset-card"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "asset-card",
+      "fields": [
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "title",
+          "label": "Card Title",
+          "description": "The title/label displayed on the card"
+        },
+        {
+          "component": "select",
+          "name": "titleType",
+          "label": "Title Type",
+          "options": [
+            {
+              "name": "H3",
+              "value": "h3"
+            },
+            {
+              "name": "H4",
+              "value": "h4"
+            },
+            {
+              "name": "H5",
+              "value": "h5"
+            },
+            {
+              "name": "H6",
+              "value": "h6"
+            }
+          ]
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Card Image",
+          "multi": false,
+          "description": "The image displayed on the card"
+        },
+        {
+          "component": "select",
+          "name": "imageDisplay",
+          "label": "Image Display",
+          "description": "How to display the image on the card",
+          "options": [
+            {
+              "name": "Centered (default)",
+              "value": "centered"
+            },
+            {
+              "name": "Full Background",
+              "value": "fullbackground"
+            }
+          ]
+        },
+        {
+          "component": "aem-content",
+          "name": "link",
+          "label": "Link",
+          "description": "The destination when clicking the card"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "asset-cards",
+      "components": [
+        "asset-card"
+      ]
+    }
+  ]
+}

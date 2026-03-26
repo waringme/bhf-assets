@@ -1,0 +1,159 @@
+[
+  {
+    "id": "main",
+    "components": [
+      "section"
+    ]
+  },
+  {
+    "id": "section",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title",
+      "hero",
+      "hero-carousel",
+      "cards",
+      "asset-cards",
+      "quick-links",
+      "search",
+      "columns",
+      "media",
+      "fragment",
+      "accordion",
+      "asset-search",
+      "breadcrumb",
+      "teaser",
+      "tabs",
+      "quote",
+      "separator",
+      "video",
+      "video-background",
+      "carousel",
+      "iframe",
+      "action-button",
+      "dynamic-media-image",
+      "dynamic-media-video",
+      "embed-adaptive-form",
+      "color-palette"
+    ]
+  },
+  {
+    "id": "accordion",
+    "components": [
+      "accordion-item"
+    ]
+  },
+  {
+    "id": "asset-cards",
+    "components": [
+      "asset-card"
+    ]
+  },
+  {
+    "id": "asset-search",
+    "components": [
+      "category-pill"
+    ]
+  },
+  {
+    "id": "cards",
+    "components": [
+      "card"
+    ]
+  },
+  {
+    "id": "carousel",
+    "components": [
+      "card"
+    ]
+  },
+  {
+    "id": "color-palette",
+    "components": [
+      "color-swatch"
+    ],
+    "fields": [
+      {
+        "component": "select",
+        "name": "variant",
+        "label": "Variant",
+        "valueType": "string",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Compact",
+            "value": "compact"
+          },
+          {
+            "name": "Square",
+            "value": "square"
+          },
+          {
+            "name": "Large",
+            "value": "large"
+          },
+          {
+            "name": "No Border",
+            "value": "no-border"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "columns",
+    "components": [
+      "column"
+    ]
+  },
+  {
+    "id": "column",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title",
+      "color-palette"
+    ]
+  },
+  {
+    "id": "hero-carousel",
+    "components": [
+      "hero-slide"
+    ]
+  },
+  {
+    "id": "media",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title"
+    ]
+  },
+  {
+    "id": "quick-links",
+    "components": [
+      "quick-link"
+    ]
+  },
+  {
+    "id": "sidebar-nav",
+    "components": [
+      "text",
+      "title"
+    ]
+  },
+  {
+    "id": "tabs",
+    "components": [
+      "tabs-item"
+    ]
+  }
+]

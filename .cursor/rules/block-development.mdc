@@ -1,0 +1,174 @@
+# Block Development Workflow
+
+## Critical Rule: Always Update Three JSON Files
+
+**Whenever you create a new block or modify an existing block, you MUST update these three files:**
+
+1. **component-definition.json** - Register the block definition
+2. **component-filters.json** - Add block to section components (if applicable) and create filter (if block has child components)
+3. **component-models.json** - Define the block's model with all fields
+
+## Workflow Checklist
+
+### When Creating a New Block:
+
+1. ✅ Create block files:
+   - `blocks/[block-name]/[block-name].js`
+   - `blocks/[block-name]/[block-name].css`
+   - `blocks/[block-name]/_[block-name].json`
+
+2. ✅ Update `component-definition.json`:
+   - Add block definition to appropriate group (usually "Blocks")
+   - Include proper resourceType, template name, model/filter references
+
+3. ✅ Update `component-filters.json`:
+   - Add block ID to `"section"` components array (so it can be added to sections)
+   - If block has child components, create a new filter entry with `"id": "[block-name]"` and `"components": [...]`
+
+4. ✅ Update `component-models.json`:
+   - Add model definition with `"id": "[block-name]"`
+   - Define all fields with proper component types (text, richtext, reference, select, boolean, container, etc.)
+   - Include field labels, descriptions, options (for select), validation (if needed)
+
+5. ✅ Verify JSON validity:
+   - Run `npm run build:json` to regenerate merged files
+   - Check for JSON syntax errors
+   - Validate all references are correct
+
+## Pattern Guidelines
+
+### Use "model" for:
+- Blocks with structured data fields
+- Example: `"model": "teaser"`
+
+### Use "filter" for:
+- Blocks that contain child components
+- Example: `"filter": "tabs"` (tabs contain tabs-item components)
+
+### Use both "model" and "filter" for:
+- Blocks that have both structured data AND child components
+- Example: `"model": "tabs", "filter": "tabs"`
+
+### Use "key-value": true for:
+- Blocks that use key-value pair configuration
+- Example: Teaser block
+
+## Field Types Reference
+
+- `"component": "text"` - Simple text input
+- `"component": "richtext"` - Rich text editor
+- `"component": "reference"` - Asset reference (images, etc.)
+- `"component": "select"` - Dropdown with options
+- `"component": "boolean"` - True/false checkbox
+- `"component": "container"` - Grouped fields
+- `"component": "aem-content"` - AEM content path picker
+- `"component": "custom-asset-namespace:custom-asset"` - Custom asset picker (Dynamic Media)
+
+## Example: Complete Block Registration
+
+### 1. Block JSON (`blocks/my-block/_my-block.json`):
+```json
+{
+  "definitions": [
+    {
+      "title": "My Block",
+      "id": "my-block",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "My Block",
+              "model": "my-block"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "my-block",
+      "fields": [
+        {
+          "component": "text",
+          "name": "title",
+          "label": "Title",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}
+```
+
+### 2. component-definition.json:
+Add to "Blocks" group:
+```json
+{
+  "title": "My Block",
+  "id": "my-block",
+  "plugins": {
+    "xwalk": {
+      "page": {
+        "resourceType": "core/franklin/components/block/v1/block",
+        "template": {
+          "name": "My Block",
+          "model": "my-block"
+        }
+      }
+    }
+  }
+}
+```
+
+### 3. component-filters.json:
+Add to section components:
+```json
+{
+  "id": "section",
+  "components": [
+    ...existing components...,
+    "my-block"
+  ]
+}
+```
+
+### 4. component-models.json:
+Add model definition:
+```json
+{
+  "id": "my-block",
+  "fields": [
+    {
+      "component": "text",
+      "name": "title",
+      "label": "Title",
+      "valueType": "string"
+    }
+  ]
+}
+```
+
+## Verification Steps
+
+After making changes:
+
+1. ✅ Run `npm run build:json` to regenerate merged files
+2. ✅ Validate JSON: `node -e "JSON.parse(require('fs').readFileSync('component-definition.json', 'utf8'))"`
+3. ✅ Check Universal Editor - block should appear in palette
+4. ✅ Test block functionality - all fields should be editable
+5. ✅ Verify no console errors
+
+## Common Mistakes to Avoid
+
+❌ **Don't forget** to add block to `component-filters.json` section components
+❌ **Don't forget** to create model in `component-models.json`
+❌ **Don't forget** to add filter entry if block has child components
+❌ **Don't forget** to run `npm run build:json` after changes
+❌ **Don't forget** to validate JSON syntax
+
+## Remember
+
+**Every block MUST be registered in all three files for it to work properly in Universal Editor!**

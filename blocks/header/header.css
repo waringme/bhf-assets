@@ -1,0 +1,253 @@
+/* Header with Sky gradient bar and two-row layout */
+header .nav-wrapper {
+  background-color: var(--pl-purple);
+  width: 100%;
+  z-index: 100;
+  position: fixed;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
+}
+
+/* Green bar at top */
+header .nav-wrapper::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: var(--pl-green);
+}
+
+/* Main header container */
+header nav {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: 100%;
+  font-family: var(--body-font-family);
+}
+
+/* Top row: Title + Logo + Dropdown */
+header .nav-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 60px;
+  padding: 0 24px 12px;
+  margin-top: 24px;
+}
+
+/* Title in top row */
+header .nav-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex: 1;
+  gap: 8px;
+}
+
+header .nav-title .default-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
+  padding-left: 220px;
+}
+
+/* Tools area - align with title */
+header .nav-tools {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+header .nav-title ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+header .nav-title li {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+header .nav-title li:not(:last-child)::after {
+  content: '|';
+  margin: 0 12px;
+  color: rgb(255 255 255 / 50%);
+}
+
+header .nav-title h1,
+header .nav-title h2,
+header .nav-title h3,
+header .nav-title h4 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-color-light);
+  line-height: 1;
+}
+
+/* Breadcrumb row */
+header .nav-sections {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  min-height: 48px;
+}
+
+header .nav-sections .default-content-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+header .nav-tools .dropdown-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: transparent;
+  border: 1px solid var(--pl-green);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  font-style: normal;
+  color: var(--text-color-light);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+header .nav-tools .dropdown-button:hover {
+  background-color: rgb(255 255 255 / 15%);
+  border-color: var(--text-color-light);
+}
+
+header .nav-tools .dropdown-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Links */
+header nav a:any-link {
+  color: rgb(255 255 255 / 85%);
+  transition: color var(--transition-fast);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+header nav a:any-link:hover {
+  color: var(--pl-green);
+  text-decoration: none;
+}
+
+/* Hover: green border-bottom */
+header .nav-title a:any-link:hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--pl-green);
+}
+
+/* Active/clicked navigation link with green text and border-bottom */
+header .nav-title a:any-link.active,
+header .nav-title a:any-link:active,
+header .nav-title a:any-link.clicked {
+  color: var(--pl-green);
+  -webkit-text-fill-color: var(--pl-green);
+}
+
+header .nav-title a:any-link.active::after,
+header .nav-title a:any-link:active::after,
+header .nav-title a:any-link.clicked::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--pl-green);
+}
+
+header nav p {
+  margin: 0;
+  line-height: 1;
+}
+
+/* Mobile responsive */
+@media (width < 900px) {
+  header .nav-top-row {
+    padding: 0 16px 12px;
+    gap: 12px;
+  }
+
+  header .nav-title {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  header .nav-title .default-content-wrapper {
+    padding-left: 0;
+    min-width: 0;
+  }
+
+  header .nav-title ul {
+    flex-wrap: wrap;
+    gap: 4px;
+    font-size: 14px;
+  }
+
+  header .nav-title li:not(:last-child)::after {
+    margin: 0 8px;
+  }
+
+  header .nav-title h1,
+  header .nav-title h2,
+  header .nav-title h3,
+  header .nav-title h4 {
+    font-size: 16px;
+  }
+
+  header .nav-tools {
+    flex-shrink: 0;
+  }
+
+  header .nav-tools .dropdown-button {
+    padding: 6px 10px;
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+  }
+
+  header .nav-tools .dropdown-icon {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+  }
+}
+
+@media (width >= 900px) {
+  header .nav-top-row {
+    padding: 0 32px 12px;
+  }
+  
+  header .nav-sections {
+    padding: 12px 32px;
+  }
+}

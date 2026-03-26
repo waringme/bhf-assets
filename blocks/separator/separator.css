@@ -1,0 +1,73 @@
+.separator-container .separator-wrapper {
+ padding: 10px 0;
+ width: 100%;
+ min-height: 20px;
+ display: block;
+}
+.separator-container .separator-wrapper .separator {
+ width: 100%;
+ display: block;
+}
+
+.separator-block {
+ width: 100%;
+ display: block;
+}
+
+.separator-block .separator-line {
+ display: block;
+ height: 1px;
+ width: 100%;
+ background-color: #c1c1c1;
+}
+
+.separator-block.light .separator-line {
+ background-color: var(--light-color);
+}
+
+.separator-block.dark .separator-line {
+ background-color: var(--dark-color);
+}
+
+.separator-block.hidden .separator-line {
+ background-color: transparent;
+}
+
+/* Sky Brand Gradient Separator */
+.separator-block.gradient .separator-line {
+ height: 2px;
+ background: var(--sky-gradient);
+ background-size: 200% 100%;
+ animation: separator-gradient-shift 3s ease infinite;
+ border: none;
+}
+
+@keyframes separator-gradient-shift {
+ 0% {
+   background-position: 0% 50%;
+ }
+ 50% {
+   background-position: 100% 50%;
+ }
+ 100% {
+   background-position: 0% 50%;
+ }
+}
+
+/* Responsive adjustments */
+@media (prefers-reduced-motion: reduce) {
+ .separator-block.gradient .separator-line {
+   animation: none;
+   background: var(--sky-gradient);
+ }
+}
+
+.separator-wrapper .separator-block.small {
+ padding: 2rem 0;
+}
+.separator-wrapper .separator-block.medium {
+ padding: 4rem 0;
+}
+.separator-wrapper .separator-block.large {
+ padding: 6rem 0;
+}

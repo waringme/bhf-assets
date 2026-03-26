@@ -1,0 +1,17 @@
+{
+  "project": "AEM XWalk Boilerplate",
+  "editUrlLabel": "AEM Editor",
+  "editUrlPattern": "{{contentSourceUrl}}{{pathname}}?cmd=open",
+  "plugins": [
+    {
+      "id": "preflight",
+      "titleI18n": {
+        "en": "Preflight"
+      },
+      "environments": [
+        "preview"
+      ],
+      "event": "preflight"
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+/* Footer Block */
+footer {
+  background-color: var(--background-color);
+  font-size: 12px;
+  border-top: 1px solid var(--border-color);
+  margin-top: 60px;
+}
+
+footer .footer {
+  color: var(--text-color);
+}
+
+footer .footer > div {
+  margin: auto;
+  max-width: 1200px;
+  padding: 40px 24px 24px;
+}
+
+footer .footer .default-content-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+}
+
+footer .footer p {
+  margin: 0;
+  color: var(--text-color-muted);
+  line-height: 1.6;
+  display: inline-flex;
+  align-items: center;
+}
+
+footer .footer p::after {
+  content: '|';
+  margin: 0 12px;
+  color: var(--text-color-muted);
+}
+
+footer .footer p:last-child::after {
+  content: none;
+}
+
+/* Footer logo */
+footer .footer picture {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  margin-right: 12px;
+}
+
+footer .footer picture img {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+
+/* Footer links - ordered by specificity */
+footer .footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  align-items: center;
+}
+
+footer .footer li {
+  display: inline-flex;
+  align-items: center;
+}
+
+footer .footer li::after {
+  content: '|';
+  margin: 0 12px;
+  color: var(--text-color-muted);
+}
+
+footer .footer li:last-child::after {
+  content: none;
+}
+
+footer .footer p a {
+  color: var(--text-color);
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+footer .footer li a,
+footer .footer p a:hover {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+footer .footer li a:hover,
+footer .footer p a:hover {
+  border-bottom: 2px solid var(--pl-green);
+}
+
+footer .footer p a::after {
+  content: '|';
+  margin-left: 12px;
+  color: var(--text-color-muted);
+}
+
+footer .footer p a:last-child::after {
+  content: none;
+}
+
+/* Legal links row spacing */
+footer .footer .legal-links {
+  margin-left: 8px;
+}
+
+/* Footer sections layout */
+@media (width >= 900px) {
+  footer .footer > div {
+    padding: 48px 32px 32px;
+  }
+}
+
+/* Copyright section */
+footer .footer .copyright {
+  font-size: var(--body-font-size-xs);
+  color: var(--text-color-muted);
+}
+
+/* Multi-column footer layout variant */
+footer .footer.footer-columns > div {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (width >= 768px) {
+  footer .footer.footer-columns > div {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+}

@@ -1,0 +1,134 @@
+/* Color Palette Block */
+.color-palette-wrapper {
+  padding: 0;
+}
+
+.color-palette {
+  padding: 0;
+}
+
+.color-palette-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0;
+  max-width: 280px;
+}
+
+/* Color Swatches Container */
+.color-swatches {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+/* Individual Color Swatch */
+.color-swatch {
+  flex: 1;
+  aspect-ratio: 1 / 1.5;
+  min-width: 50px;
+  cursor: pointer;
+  position: relative;
+  transition: transform var(--transition-fast);
+  border-right: 1px solid rgb(0 0 0 / 10%);
+}
+
+.color-swatch:last-child {
+  border-right: none;
+}
+
+.color-swatch:hover {
+  transform: scale(1.05);
+  z-index: 1;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 20%);
+}
+
+/* Copied feedback */
+.color-swatch.copied::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgb(0 0 0 / 50%);
+  animation: fadeInOut 1s ease;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Label */
+.color-palette-label {
+  margin: 0;
+  font-size: var(--body-font-size-m);
+  font-weight: 600;
+  color: var(--text-color);
+  text-align: center;
+}
+
+/* Variants */
+
+/* Compact variant - smaller swatches */
+.color-palette.color-palette-compact .color-palette-container {
+  max-width: 200px;
+  padding: 16px;
+}
+
+.color-palette.color-palette-compact .color-swatch {
+  min-width: 40px;
+  aspect-ratio: 1 / 1.2;
+}
+
+/* Square variant - equal width and height */
+.color-palette.color-palette-square .color-swatch {
+  aspect-ratio: 1 / 1;
+}
+
+/* Large variant - bigger swatches */
+.color-palette.color-palette-large .color-palette-container {
+  max-width: 400px;
+  padding: 32px;
+}
+
+.color-palette.color-palette-large .color-swatch {
+  min-width: 80px;
+  aspect-ratio: 1 / 1.5;
+}
+
+/* No border variant */
+.color-palette.color-palette-no-border .color-palette-container {
+  border: none;
+  background: transparent;
+}
+
+/* Responsive */
+@media (width < 600px) {
+  .color-palette-container {
+    max-width: 100%;
+  }
+
+  .color-swatch {
+    min-width: 40px;
+  }
+}

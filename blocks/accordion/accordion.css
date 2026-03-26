@@ -1,0 +1,158 @@
+/* Accordion Block */
+.accordion-wrapper {
+  padding: 0;
+}
+
+.accordion {
+  padding: 0;
+}
+
+.accordion-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Accordion Item */
+.accordion-item {
+  background-color: var(--background-color-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  transition: border-color var(--transition-fast);
+}
+
+.accordion-item:hover {
+  border-color: var(--border-color-hover);
+}
+
+.accordion-item.is-open {
+  border-color: var(--accent-color);
+}
+
+/* Accordion Header (Button) */
+.accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px 24px;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.accordion-header:hover {
+  background-color: rgb(255 255 255 / 5%);
+}
+
+.accordion-header:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: -2px;
+}
+
+/* Accordion Title */
+.accordion-title {
+  flex: 1;
+  padding-right: 16px;
+}
+
+/* Accordion Icon (Plus/Minus) */
+.accordion-icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.accordion-icon::before,
+.accordion-icon::after {
+  content: '';
+  position: absolute;
+  background-color: var(--text-color);
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+/* Horizontal line */
+.accordion-icon::before {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: translateY(-50%);
+}
+
+/* Vertical line (forms the plus) */
+.accordion-icon::after {
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  transform: translateX(-50%);
+}
+
+/* When open, rotate vertical line to form minus */
+.accordion-header[aria-expanded='true'] .accordion-icon::after {
+  transform: translateX(-50%) rotate(90deg);
+  opacity: 0;
+}
+
+/* Accordion Content */
+.accordion-content {
+  padding: 0 24px 24px;
+  color: var(--text-color);
+  font-size: var(--body-font-size-s);
+  line-height: 1.6;
+}
+
+.accordion-content[hidden] {
+  display: none;
+}
+
+.accordion-content p {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.accordion-content p:last-child {
+  margin-bottom: 0;
+}
+
+.accordion-content ul,
+.accordion-content ol {
+  margin: 0 0 16px;
+  padding-left: 24px;
+}
+
+.accordion-content li {
+  margin-bottom: 8px;
+}
+
+.accordion-content a {
+  color: var(--accent-color);
+}
+
+.accordion-content a:hover {
+  color: var(--accent-color-hover);
+}
+
+/* Responsive */
+@media (width >= 768px) {
+  .accordion-header {
+    padding: 24px 32px;
+    font-size: var(--body-font-size-m);
+  }
+
+  .accordion-content {
+    padding: 0 32px 32px;
+  }
+}
+

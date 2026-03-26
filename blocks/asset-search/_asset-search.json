@@ -1,0 +1,97 @@
+{
+  "definitions": [
+    {
+      "title": "Asset Search",
+      "id": "asset-search",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Asset Search",
+              "model": "asset-search",
+              "filter": "asset-search"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Category Pill",
+      "id": "category-pill",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Category Pill",
+              "model": "category-pill"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "asset-search",
+      "fields": [
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "deliveryUrl",
+          "label": "Delivery URL",
+          "description": "AEM Dynamic Media delivery URL (e.g., https://delivery-pXXXXX-eXXXXX.adobeaemcloud.com)"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "runtimeEndpoint",
+          "label": "Runtime Endpoint",
+          "description": "Adobe I/O Runtime get-token endpoint URL (e.g., https://xxxxx.adobeioruntime.net/api/v1/web/sage-portal/get-token)"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "clientId",
+          "label": "Client ID",
+          "description": "X-Api-Key value for API authentication"
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "pageSize",
+          "label": "Page Size",
+          "description": "Number of assets to display per page (default: 20)"
+        }
+      ]
+    },
+    {
+      "id": "category-pill",
+      "fields": [
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "label",
+          "label": "Label",
+          "description": "Display text for the category pill"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "labelValue",
+          "label": "Filter Value",
+          "description": "Value to filter by when selected (leave empty to use label)"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "asset-search",
+      "components": [
+        "category-pill"
+      ]
+    }
+  ]
+}

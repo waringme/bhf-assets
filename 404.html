@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="script-src 'nonce-aem' 'strict-dynamic' 'unsafe-inline' http: https:; base-uri 'self'; object-src 'none';"
+    move-to-http-header="true"
+  >
+  <title>Page not found | Premier League</title>
+  <script nonce="aem" type="text/javascript">
+    window.isErrorPage = true;
+    window.errorCode = '404';
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Page not found | Premier League">
+  <script nonce="aem" src="/scripts/scripts.js" type="module"></script>
+  <script nonce="aem" type="module">
+    import { sampleRUM } from '/scripts/aem.js';
+    sampleRUM('404', { source: document.referrer });
+  </script>
+  <link rel="stylesheet" href="/styles/fonts.css">
+  <link rel="stylesheet" href="/styles/styles.css">
+  <style>
+    main.error {
+      min-height: calc(100vh - var(--nav-height));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--pl-purple);
+      padding: 40px 16px;
+    }
+
+    main.error .section {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    main.error .error-number {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto 32px;
+      height: auto;
+      display: block;
+      overflow: visible;
+    }
+
+    main.error .error-number text {
+      font-family: var(--heading-font-family);
+      font-size: 140px;
+      font-weight: 700;
+      fill: var(--pl-green);
+      letter-spacing: -0.02em;
+    }
+
+    main.error .error-message {
+      font-size: var(--heading-font-size-xl);
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 16px;
+      font-family: var(--heading-font-family);
+    }
+
+    main.error .error-description {
+      font-size: var(--body-font-size-m);
+      color: rgb(255 255 255 / 0.9);
+      margin: 0 0 32px;
+      line-height: 1.6;
+      font-family: var(--body-font-family);
+    }
+
+    main.error .button-container {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    main.error .error-button-home {
+      min-width: 180px;
+    }
+
+    @media (width >= 900px) {
+      main.error .error-number {
+        max-width: 800px;
+      }
+
+      main.error .error-number text {
+        font-size: 280px;
+      }
+
+      main.error .error-message {
+        font-size: var(--heading-font-size-xxl);
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="/styles/lazy-styles.css">
+</head>
+
+<body>
+  <header></header>
+  <main class="error">
+    <div class="section">
+      <svg viewBox="0 0 600 300" class="error-number" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="plGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#eaff04;stop-opacity:1" />
+            <stop offset="33%" style="stop-color:#00ff87;stop-opacity:1" />
+            <stop offset="66%" style="stop-color:#05f1ff;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#ff005a;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <text x="300" y="180" text-anchor="middle" dominant-baseline="middle" font-weight="700" font-size="240">404</text>
+      </svg>
+      <h1 class="error-message">Page Not Found</h1>
+      <p class="error-description">
+        Sorry, we couldn't find the page you're looking for. It may have been moved, deleted, or the URL might be incorrect.
+      </p>
+      <div class="button-container">
+        <a href="/" class="button gradient error-button-home">Go Home</a>
+      </div>
+    </div>
+  </main>
+  <footer></footer>
+</body>
+
+</html>

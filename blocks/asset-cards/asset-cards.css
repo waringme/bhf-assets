@@ -1,0 +1,258 @@
+/* Asset Cards Block */
+.asset-cards-wrapper {
+  padding: 0;
+}
+
+.asset-cards {
+  padding: 0;
+}
+
+/* Section Title */
+.asset-cards-title {
+  margin: 0 0 24px;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.asset-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Column variants */
+.asset-cards.asset-cards-2-cols .asset-cards-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.asset-cards.asset-cards-3-cols .asset-cards-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.asset-cards.asset-cards-4-cols .asset-cards-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Responsive adjustments */
+@media (width < 900px) {
+  .asset-cards.asset-cards-3-cols .asset-cards-grid,
+  .asset-cards.asset-cards-4-cols .asset-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width < 600px) {
+  .asset-cards.asset-cards-2-cols .asset-cards-grid,
+  .asset-cards.asset-cards-3-cols .asset-cards-grid,
+  .asset-cards.asset-cards-4-cols .asset-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Card styles */
+.asset-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--background-color-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  transition: border-color var(--transition-normal), transform var(--transition-normal), box-shadow var(--transition-normal);
+  padding: 24px;
+  min-height: 280px;
+}
+
+.asset-card:hover {
+  border-color: var(--accent-color);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgb(0 0 0 / 10%);
+}
+
+/* Card link wrapper */
+.asset-card-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.asset-card-link:hover {
+  text-decoration: none;
+}
+
+/* Card content - label at top */
+.asset-card-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+/* Card label badge */
+.asset-card-label {
+  display: inline-block;
+  padding: 12px 32px;
+  background-color: var(--background-color-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-pill);
+  font-size: var(--body-font-size-s);
+  font-weight: 700;
+  color: var(--text-color);
+  text-align: center;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.asset-card:hover .asset-card-label {
+  border-color: var(--accent-color);
+  background-color: var(--background-color-secondary);
+}
+
+/* Card image - centered below label */
+.asset-card-image {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.asset-card-image picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.asset-card-image img {
+  max-width: 100%;
+  max-height: 200px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: transform var(--transition-normal);
+}
+
+.asset-card:hover .asset-card-image img {
+  transform: scale(1.05);
+}
+
+/* Cards with background images (photo cards) */
+.asset-cards.asset-cards-photo .asset-card {
+  padding: 0;
+  min-height: 200px;
+  aspect-ratio: 16 / 10;
+}
+
+.asset-cards.asset-cards-photo .asset-card-image {
+  position: absolute;
+  inset: 0;
+}
+
+.asset-cards.asset-cards-photo .asset-card-image img {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+}
+
+.asset-cards.asset-cards-photo .asset-card-content {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  margin-bottom: 0;
+  z-index: 1;
+}
+
+.asset-cards.asset-cards-photo .asset-card-label {
+  background-color: rgb(0 0 0 / 70%);
+  backdrop-filter: blur(8px);
+}
+
+/* Gradient overlay for photo cards */
+.asset-cards.asset-cards-photo .asset-card-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 60%) 0%,
+    rgb(0 0 0 / 20%) 40%,
+    rgb(0 0 0 / 0%) 100%
+  );
+  pointer-events: none;
+}
+
+/* Featured variant - larger cards */
+.asset-cards.asset-cards-featured .asset-card {
+  min-height: 320px;
+}
+
+.asset-cards.asset-cards-featured .asset-card-image img {
+  max-height: 240px;
+}
+
+/* Full Background variant - image as background, title on left */
+.asset-card.asset-card-fullbg {
+  padding: 0;
+  min-height: 200px;
+  aspect-ratio: 16 / 10;
+  align-items: stretch;
+}
+
+.asset-card.asset-card-fullbg .asset-card-link {
+  align-items: stretch;
+}
+
+.asset-card.asset-card-fullbg .asset-card-image {
+  position: absolute;
+  inset: 0;
+  flex: none;
+}
+
+.asset-card.asset-card-fullbg .asset-card-image picture {
+  width: 100%;
+  height: 100%;
+}
+
+.asset-card.asset-card-fullbg .asset-card-image img {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+}
+
+/* Gradient overlay for full background */
+.asset-card.asset-card-fullbg .asset-card-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgb(0 0 0 / 70%) 0%,
+    rgb(0 0 0 / 40%) 50%,
+    rgb(0 0 0 / 0%) 100%
+  );
+  pointer-events: none;
+}
+
+.asset-card.asset-card-fullbg .asset-card-content {
+  position: absolute;
+  inset: 16px auto auto 16px;
+  margin-bottom: 0;
+  z-index: 1;
+  justify-content: flex-start;
+}
+
+.asset-card.asset-card-fullbg .asset-card-label {
+  background-color: transparent;
+  text-align: left;
+}

@@ -1,0 +1,47 @@
+{
+  "definitions": [
+    {
+      "title": "Text",
+      "id": "text",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/text/v1/text",
+            "template": {
+              "model": "text",
+              "key-value": true
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "text",
+      "fields": [
+        {
+          "component": "select",
+          "name": "textAlign",
+          "label": "Text Alignment",
+          "valueType": "string",
+          "value": "",
+          "options": [
+            {
+              "name": "Left",
+              "value": ""
+            },
+            {
+              "name": "Center",
+              "value": "center"
+            },
+            {
+              "name": "Right",
+              "value": "right"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

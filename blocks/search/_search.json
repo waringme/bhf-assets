@@ -1,0 +1,44 @@
+{
+  "definitions": [
+    {
+      "title": "Search",
+      "id": "search",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Search",
+              "model": "search"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "search",
+      "fields": [
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "searchPlaceholder",
+          "label": "Placeholder Text",
+          "value": "What are you looking for?",
+          "description": "Placeholder text shown in the search input"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "searchButton",
+          "label": "Button Text",
+          "value": "Search",
+          "description": "Text displayed on the search button"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}
+

@@ -1,0 +1,92 @@
+/* Media block with image and text */
+.media {
+  padding: 48px 0;
+}
+
+.media .media-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Image container */
+.media .media-image {
+  flex: 1;
+}
+
+.media .media-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--border-radius-md);
+  object-fit: cover;
+}
+
+/* Text container */
+.media .media-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+}
+
+.media .media-text h2,
+.media .media-text h3 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text-color);
+  line-height: 1.3;
+}
+
+.media .media-text p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.media .media-text a {
+  color: var(--accent-color);
+  text-decoration: underline;
+  transition: color var(--transition-fast);
+}
+
+.media .media-text a:hover {
+  color: var(--accent-color-hover);
+}
+
+/* Desktop layout - side by side */
+@media (width >= 900px) {
+  .media .media-wrapper {
+    flex-direction: row;
+    align-items: center;
+    gap: 64px;
+  }
+
+  /* Image right variant - reverse order */
+  .media.media-image-right .media-wrapper {
+    flex-direction: row-reverse;
+  }
+
+  .media .media-text h2,
+  .media .media-text h3 {
+    font-size: 32px;
+  }
+
+  .media .media-text p {
+    font-size: 18px;
+  }
+}
+
+/* Large desktop - more spacing */
+@media (width >= 1200px) {
+  .media .media-wrapper {
+    gap: 80px;
+  }
+
+  .media .media-text {
+    gap: 28px;
+  }
+}

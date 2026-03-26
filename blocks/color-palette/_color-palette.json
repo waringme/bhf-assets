@@ -1,0 +1,101 @@
+{
+  "definitions": [
+    {
+      "title": "Color Palette",
+      "id": "color-palette",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Color Palette",
+              "model": "color-palette",
+              "filter": "color-palette"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Color Swatch",
+      "id": "color-swatch",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Color Swatch",
+              "model": "color-swatch"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "filters": [
+    {
+      "id": "color-palette",
+      "components": [
+        "color-swatch"
+      ],
+      "fields": [
+        {
+          "component": "select",
+          "name": "variant",
+          "label": "Variant",
+          "valueType": "string",
+          "value": "",
+          "options": [
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "Compact",
+              "value": "compact"
+            },
+            {
+              "name": "Square",
+              "value": "square"
+            },
+            {
+              "name": "Large",
+              "value": "large"
+            },
+            {
+              "name": "No Border",
+              "value": "no-border"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "models": [
+    {
+      "id": "color-palette",
+      "fields": [
+        {
+          "component": "text",
+          "name": "label",
+          "label": "Label",
+          "valueType": "string",
+          "description": "Optional label to display below the color swatches (e.g., 'Colour', 'Primary Colors')"
+        }
+      ]
+    },
+    {
+      "id": "color-swatch",
+      "fields": [
+        {
+          "component": "text",
+          "name": "color",
+          "label": "Color Code",
+          "valueType": "string",
+          "required": true,
+          "description": "Hex color value (e.g., #004A8F, #6B7280, #C5C5C5)"
+        }
+      ]
+    }
+  ]
+}
