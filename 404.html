@@ -7,13 +7,13 @@
     content="script-src 'nonce-aem' 'strict-dynamic' 'unsafe-inline' http: https:; base-uri 'self'; object-src 'none';"
     move-to-http-header="true"
   >
-  <title>Page not found | Premier League</title>
+  <title>Page not found | British Heart Foundation</title>
   <script nonce="aem" type="text/javascript">
     window.isErrorPage = true;
     window.errorCode = '404';
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="Page not found | Premier League">
+  <meta property="og:title" content="Page not found | British Heart Foundation">
   <script nonce="aem" src="/scripts/scripts.js" type="module"></script>
   <script nonce="aem" type="module">
     import { sampleRUM } from '/scripts/aem.js';
@@ -50,7 +50,6 @@
       font-family: var(--heading-font-family);
       font-size: 140px;
       font-weight: 700;
-      fill: var(--pl-green);
       letter-spacing: -0.02em;
     }
 
@@ -104,14 +103,22 @@
     <div class="section">
       <svg viewBox="0 0 600 300" class="error-number" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
         <defs>
-          <linearGradient id="plGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style="stop-color:#eaff04;stop-opacity:1" />
-            <stop offset="33%" style="stop-color:#00ff87;stop-opacity:1" />
-            <stop offset="66%" style="stop-color:#05f1ff;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#ff005a;stop-opacity:1" />
+          <linearGradient id="bhfGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#8c0032;stop-opacity:1" />
+            <stop offset="40%" style="stop-color:#d20019;stop-opacity:1" />
+            <stop offset="72%" style="stop-color:#e71348;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#ff0030;stop-opacity:1" />
           </linearGradient>
         </defs>
-        <text x="300" y="180" text-anchor="middle" dominant-baseline="middle" font-weight="700" font-size="240">404</text>
+        <text
+          x="300"
+          y="180"
+          text-anchor="middle"
+          dominant-baseline="middle"
+          font-weight="700"
+          font-size="240"
+          fill="url(#bhfGradient)"
+        >404</text>
       </svg>
       <h1 class="error-message">Page Not Found</h1>
       <p class="error-description">

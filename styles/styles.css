@@ -11,54 +11,71 @@
  */
 
 :root {
-  /* Premier League Brand Colors */
+  /* British Heart Foundation — aligned with bhf.org.uk design tokens */
 
-  /* Primary brand purple - logo, headings, dark text */
-  --pl-purple: #38003c;
+  /* Primary reds (see bhf.org.uk shelf / typography classes) */
+  --bhf-dark-red: #8c0032;
+  --bhf-medium-red: #d20019;
+  --bhf-rubine-red: #e71348;
+  --bhf-bright-red: #ff0030;
 
-  /* Accent palette - vibrant backgrounds */
-  --pl-pink: #ff005a;
-  --pl-cyan: #05f1ff;
-  --pl-green: #00ff87;
-  --pl-yellow: #eaff04;
+  /* Legacy PL variable names — mapped to BHF for existing block CSS */
+  --pl-purple: var(--bhf-dark-red);
+  --pl-pink: var(--bhf-rubine-red);
+  --pl-cyan: var(--bhf-medium-red);
+  --pl-green: var(--bhf-bright-red);
+  --pl-yellow: #ed002d;
 
   /* Backgrounds */
-  --background-color: #fafafd;
-  --background-color-secondary: #f4f4f6;
+  --background-color: #f0f0f0;
+  --background-color-secondary: #ecedee;
   --background-color-card: #fff;
   --light-color: #fff;
-  --dark-color: #38003c;
+  --dark-color: var(--bhf-dark-red);
 
-  /* Text colors */
-  --text-color: #38003c;
-  --text-color-muted: #5c4d5e;
+  /* Text — body default #333 on bhf.org.uk */
+  --text-color: #333;
+  --text-color-muted: #474e5a;
   --text-color-light: #fff;
 
-  /* Link and accent colors */
-  --link-color: #38003c;
-  --link-hover-color: #ff005a;
-  --accent-color: #38003c;
-  --accent-color-hover: #ff005a;
+  /* Links and CTAs */
+  --link-color: var(--bhf-medium-red);
+  --link-hover-color: var(--bhf-rubine-red);
+  --accent-color: var(--bhf-medium-red);
+  --accent-color-hover: var(--bhf-rubine-red);
 
   /* Borders */
-  --border-color: #e8e0e9;
-  --border-color-hover: #38003c;
+  --border-color: #e0e0e0;
+  --border-color-hover: var(--bhf-dark-red);
 
-  /* Main gradient - Premier League palette */
-  --main-gradient: linear-gradient(to right, #eaff04 0%, #00ff87 33%, #05f1ff 66%, #ff005a 100%);
-  --main-gradient-vertical: linear-gradient(180deg, #eaff04 0%, #00ff87 33%, #05f1ff 66%, #ff005a 100%);
-  --main-gradient-lime: #00ff87;
-  --main-gradient-cyan: #05f1ff;
-  --main-gradient-pink: #ff005a;
-  --main-gradient-yellow: #eaff04;
+  /* Brand gradient — BHF red spectrum */
+  --main-gradient: linear-gradient(
+    to right,
+    var(--bhf-dark-red) 0%,
+    var(--bhf-medium-red) 38%,
+    var(--bhf-rubine-red) 72%,
+    var(--bhf-bright-red) 100%
+  );
+  --main-gradient-vertical: linear-gradient(
+    180deg,
+    var(--bhf-dark-red) 0%,
+    var(--bhf-medium-red) 40%,
+    var(--bhf-rubine-red) 75%,
+    var(--bhf-bright-red) 100%
+  );
+  --main-gradient-lime: var(--bhf-medium-red);
+  --main-gradient-cyan: var(--bhf-rubine-red);
+  --main-gradient-pink: var(--bhf-bright-red);
+  --main-gradient-yellow: var(--bhf-dark-red);
 
-  /* Legacy gradient alias (uses main palette) */
   --sky-gradient: var(--main-gradient);
   --sky-gradient-vertical: var(--main-gradient-vertical);
 
-  /* fonts */
-  --body-font-family: 'Premier League W01', premier-league-fallback, sans-serif;
-  --heading-font-family: 'Premier League W01', premier-league-fallback, sans-serif;
+  /* Trebuchet body + condensed display (approximates BHF Beats Bold) */
+  --body-font-family:
+    'Trebuchet MS', trebuchet, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', tahoma, sans-serif;
+  --heading-font-family:
+    'Barlow Condensed', 'Trebuchet MS', trebuchet, 'Arial Narrow', arial, sans-serif;
   --icon-font-family: inherit;
 
   /* body sizes */
@@ -87,13 +104,6 @@
   /* transitions */
   --transition-fast: 150ms ease;
   --transition-normal: 250ms ease;
-}
-
-/* fallback font for Premier League */
-@font-face {
-  font-family: premier-league-fallback;
-  size-adjust: 100%;
-  src: local('Arial');
 }
 
 @media (width >= 900px) {
