@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: "https://author-p147324-e1675629.adobeaemcloud.com/bin/franklin.delivery/polizzigaetano/premierleaguebp/main"
+    url: "https://author-p147324-e1675629.adobeaemcloud.com/bin/franklin.delivery/waringme/bhf-assets/main"
     type: "markup"
     suffix: ".html"
