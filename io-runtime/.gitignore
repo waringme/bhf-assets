@@ -1,5 +1,6 @@
 # Environment files with secrets
 .env
+.old-env
 
 # Node modules
 node_modules/
