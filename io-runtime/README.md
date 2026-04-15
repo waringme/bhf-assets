@@ -104,6 +104,24 @@ Or test locally:
 aio app run
 ```
 
+### Dynamic Media asset search (`POST /adobe/assets/search`)
+
+From `io-runtime/`, set delivery host and IMS OAuth (same credentials as `get-token`):
+
+```env
+DM_DELIVERY_URL=https://delivery-pXXXX-eYYYY.adobeaemcloud.com
+IMS_CLIENT_ID=...
+IMS_CLIENT_SECRET=...
+```
+
+Then run (optional args: search text, limit):
+
+```bash
+npm run test:dm-search -- "your keywords" 10
+```
+
+This calls the [Assets Delivery search API](https://developer.adobe.com/experience-cloud/experience-manager-apis/api/stable/assets/delivery/#operation-search) using client credentials and prints total count and a sample hit. It does not print access tokens.
+
 ## Security Notes
 
 - **Never commit `.env` files** - they contain secrets

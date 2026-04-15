@@ -4,8 +4,8 @@ A brand resource hub built with Adobe Edge Delivery Services (EDS) and WYSIWYG a
 
 ## Environments
 
-- Preview: https://main--sky-brand-portal-eds--polizzigaetano.aem.page/
-- Live: https://main--sky-brand-portal-eds--polizzigaetano.aem.live/    
+- Preview: https://main--sky-brand-portal-eds--mattquinn.aem.page/
+- Live: https://main--sky-brand-portal-eds--mattquinn.aem.live/    
 
 ## Features
 

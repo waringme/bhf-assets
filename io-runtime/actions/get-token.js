@@ -24,11 +24,22 @@ const IMS_TOKEN_ENDPOINT = 'https://ims-na1.adobelogin.com/ims/token/v3';
  * @returns {Object} Response with access token or error
  */
 async function main(params) {
-  // Hardcoded credentials (for simplicity - in production, use environment variables)
-  const clientId = 'aee68698a2774e93b7cbc30eb9be46cf';
-  const clientSecret = 'p8e-3z_UtzEOIb4Iz8WOBoPJhNMRuXiBrlcK';
+  const clientId = params.IMS_CLIENT_ID;
+  const clientSecret = params.IMS_CLIENT_SECRET;
   const scopes = params.IMS_SCOPES || 'openid,AdobeID,aem.assets.delivery';
   const logLevel = params.LOG_LEVEL || 'info';
+
+  if (!clientId || !clientSecret) {
+    console.error('[get-token] Missing IMS_CLIENT_ID or IMS_CLIENT_SECRET');
+    return {
+      statusCode: 500,
+      headers: { 'Content-Type': 'application/json' },
+      body: {
+        error: 'IMS credentials not configured',
+        message: 'Set IMS_CLIENT_ID and IMS_CLIENT_SECRET in .env and redeploy, or pass them as action inputs.',
+      },
+    };
+  }
 
   try {
     if (logLevel === 'debug') {

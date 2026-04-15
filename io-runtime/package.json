@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Adobe I/O Runtime actions for Sage Portal - DM API token generation",
   "private": true,
+  "scripts": {
+    "test:dm-search": "node scripts/test-dm-asset-search.mjs"
+  },
   "engines": {
     "node": ">=18"
   },
@@ -10,6 +13,6 @@
     "node-fetch": "^2.7.0"
   },
   "devDependencies": {
-    "@adobe/aio-cli": "^10.0.0"
+    "@adobe/aio-cli": "^11.0.2"
   }
 }
