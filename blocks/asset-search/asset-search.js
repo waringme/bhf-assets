@@ -59,28 +59,32 @@ const STATE = {
 // =============================================================================
 
 /**
- * Prints delivery URL, search URL, X-Api-Key (client id), and bearer token to the
- * browser console for debugging. Contains secrets — remove or gate for production.
+ * Logs non-secret context for troubleshooting (no tokens, client id, or response bodies).
  * @param {string} contextLabel - Where this was logged from
- * @param {Object} [extras] - Optional details (e.g. userMessage, httpStatus, bodySnippet)
+ * @param {Object} [extras] - Optional: userMessage, httpStatus
  */
-function logAssetSearchAuthDebug(contextLabel, extras = {}) {
+function logAssetSearchSafeDebug(contextLabel, extras = {}) {
   /* eslint-disable no-console */
   const base = (CONFIG.deliveryUrl || '').replace(/\/+$/, '');
-  const bearer = (CONFIG.bearerToken && CONFIG.bearerToken.trim())
-    || TOKEN_CACHE.accessToken
-    || '';
-  console.groupCollapsed(`[Asset Search] Debug — ${contextLabel}`);
+  let getTokenHost = '';
+  if (CONFIG.runtimeEndpoint) {
+    try {
+      getTokenHost = new URL(CONFIG.runtimeEndpoint).host;
+    } catch {
+      getTokenHost = '(invalid URL)';
+    }
+  }
+  const authMode = CONFIG.bearerToken?.trim()
+    ? 'static-bearer'
+    : (CONFIG.runtimeEndpoint ? 'runtime-url' : 'none');
+  console.groupCollapsed(`[Asset Search] — ${contextLabel}`);
   console.log('deliveryUrl:', CONFIG.deliveryUrl || '(empty)');
   console.log('search POST URL:', base ? `${base}/adobe/assets/search` : '(empty)');
-  console.log('clientId (X-Api-Key):', CONFIG.clientId || '(empty)');
-  if (CONFIG.runtimeEndpoint) {
-    console.log('get-token URL:', CONFIG.runtimeEndpoint);
-  }
-  console.log('Bearer token:', bearer || '(none yet)');
+  console.log('X-Api-Key:', CONFIG.clientId ? '(set)' : '(missing)');
+  console.log('auth mode:', authMode);
+  if (getTokenHost) console.log('get-token host:', getTokenHost);
   if (extras.userMessage) console.log('error message:', extras.userMessage);
   if (extras.httpStatus != null) console.log('HTTP status:', extras.httpStatus);
-  if (extras.bodySnippet) console.log('response body (truncated):', extras.bodySnippet);
   console.groupEnd();
   /* eslint-enable no-console */
 }
@@ -131,7 +135,6 @@ async function getAccessToken() {
     const msg = errorData.message || `Token request failed: ${response.status}`;
     const err = new Error(msg);
     err._httpStatus = response.status;
-    err._snippet = JSON.stringify(errorData).slice(0, 800);
     err._debugContext = 'get-token HTTP error';
     throw err;
   }
@@ -140,7 +143,6 @@ async function getAccessToken() {
 
   if (!data.access_token) {
     const err = new Error('No access token in response');
-    err._snippet = JSON.stringify(data).slice(0, 800);
     err._debugContext = 'get-token JSON missing access_token';
     throw err;
   }
@@ -246,7 +248,6 @@ async function searchAssets(options = {}) {
     const errorText = await response.text();
     const err = new Error(`API Error ${response.status}: ${errorText}`);
     err._httpStatus = response.status;
-    err._snippet = errorText.slice(0, 800);
     err._debugContext = 'DM search HTTP error';
     throw err;
   }
@@ -1151,18 +1152,13 @@ function parseErrorMessage(message) {
 }
 
 /**
- * Show error message
- * @param {string} message - Error message
- */
-/**
  * @param {string} message - User-facing error text
- * @param {Object} [debug] - Optional: contextLabel, httpStatus, bodySnippet (from thrown Error)
+ * @param {Object} [debug] - Optional: contextLabel, httpStatus (from thrown Error)
  */
 function showError(message, debug = {}) {
-  logAssetSearchAuthDebug(debug.contextLabel || 'showError', {
+  logAssetSearchSafeDebug(debug.contextLabel || 'showError', {
     userMessage: message,
     httpStatus: debug.httpStatus,
-    bodySnippet: debug.bodySnippet,
   });
   const grid = document.querySelector('.asset-search-grid');
   if (!grid) return;
@@ -1224,7 +1220,6 @@ async function executeSearch() {
     showError(error.message, {
       contextLabel: error._debugContext || 'executeSearch',
       httpStatus: error._httpStatus,
-      bodySnippet: error._snippet,
     });
   } finally {
     setLoading(false);
