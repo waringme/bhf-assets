@@ -111,7 +111,9 @@ async function getAccessToken() {
 
   // Fetch new token from I/O Runtime
   if (!CONFIG.runtimeEndpoint) {
-    throw new Error('Runtime endpoint or bearer token not configured');
+    const err = new Error('Runtime endpoint or bearer token not configured');
+    err._debugContext = 'getAccessToken configuration';
+    throw err;
   }
 
   // eslint-disable-next-line no-console
@@ -1152,8 +1154,16 @@ function parseErrorMessage(message) {
  * Show error message
  * @param {string} message - Error message
  */
-function showError(message) {
-  logAssetSearchAuthDebug('showError (user-facing message)', { userMessage: message });
+/**
+ * @param {string} message - User-facing error text
+ * @param {Object} [debug] - Optional: contextLabel, httpStatus, bodySnippet (from thrown Error)
+ */
+function showError(message, debug = {}) {
+  logAssetSearchAuthDebug(debug.contextLabel || 'showError', {
+    userMessage: message,
+    httpStatus: debug.httpStatus,
+    bodySnippet: debug.bodySnippet,
+  });
   const grid = document.querySelector('.asset-search-grid');
   if (!grid) return;
 
@@ -1183,7 +1193,9 @@ async function executeSearch() {
 
   // Validate configuration
   if (!CONFIG.deliveryUrl || !CONFIG.clientId || (!CONFIG.runtimeEndpoint && !CONFIG.bearerToken)) {
-    showError('Block not configured. Please set Delivery URL, Client ID, and either an I/O Runtime get-token URL or a bearer token in Universal Editor.');
+    showError('Block not configured. Please set Delivery URL, Client ID, and either an I/O Runtime get-token URL or a bearer token in Universal Editor.', {
+      contextLabel: 'invalid block configuration',
+    });
     return;
   }
 
@@ -1209,7 +1221,11 @@ async function executeSearch() {
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('[Asset Search] Error:', error);
-    showError(error.message);
+    showError(error.message, {
+      contextLabel: error._debugContext || 'executeSearch',
+      httpStatus: error._httpStatus,
+      bodySnippet: error._snippet,
+    });
   } finally {
     setLoading(false);
   }
