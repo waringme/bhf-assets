@@ -4,11 +4,13 @@
  *
  * Required env (e.g. in io-runtime/.env for local runs, or export in shell):
  *   DM_DELIVERY_URL   — e.g. https://delivery-pXXXX-eYYYY.adobeaemcloud.com
- *   IMS_CLIENT_ID     — OAuth Server-to-Server client ID (same value as X-Api-Key)
- *   IMS_CLIENT_SECRET
+ *
+ * Authentication (pick one):
+ *   DM_ACCESS_TOKEN   — Bearer token (skips IMS and any get-token URL)
+ *   or IMS_CLIENT_ID + IMS_CLIENT_SECRET — client credentials to IMS token endpoint
  *
  * Optional:
- *   IMS_SCOPES        — default: openid,AdobeID,aem.assets.delivery
+ *   IMS_SCOPES        — default: openid,AdobeID,aem.assets.delivery (IMS path only)
  *
  * Usage:
  *   cd io-runtime && node scripts/test-dm-asset-search.mjs [search text] [limit]
@@ -89,17 +91,23 @@ async function getImsToken(clientId, clientSecret, scopes) {
 
 async function main() {
   const deliveryUrl = (process.env.DM_DELIVERY_URL || '').replace(/\/+$/, '');
+  const bearerFromEnv = (process.env.DM_ACCESS_TOKEN || process.env.AEM_DM_BEARER_TOKEN || '').trim();
   const clientId = process.env.IMS_CLIENT_ID;
   const clientSecret = process.env.IMS_CLIENT_SECRET;
   const scopes = process.env.IMS_SCOPES || 'openid,AdobeID,aem.assets.delivery';
   const searchText = process.argv[2] ?? ' ';
   const limit = Math.min(50, Math.max(1, Number(process.argv[3]) || 5));
 
-  if (!deliveryUrl || !clientId || !clientSecret) {
-    console.error(`Missing env. Set:
-  DM_DELIVERY_URL   (e.g. https://delivery-pXXXX-eYYYY.adobeaemcloud.com)
-  IMS_CLIENT_ID
-  IMS_CLIENT_SECRET
+  if (!deliveryUrl) {
+    console.error(`Missing DM_DELIVERY_URL (e.g. https://delivery-pXXXX-eYYYY.adobeaemcloud.com)`);
+    process.exit(1);
+  }
+
+  if (!bearerFromEnv && (!clientId || !clientSecret)) {
+    console.error(`Set either:
+  DM_ACCESS_TOKEN   (Bearer token; no IMS / get-token URL)
+or:
+  IMS_CLIENT_ID and IMS_CLIENT_SECRET   (client credentials)
 
 Optional: IMS_SCOPES (default: ${scopes})
 
@@ -108,7 +116,18 @@ Add them to io-runtime/.env or export before running.`);
   }
 
   const searchUrl = `${deliveryUrl}/adobe/assets/search`;
-  const token = await getImsToken(clientId, clientSecret, scopes);
+  let token;
+  let apiKey = clientId;
+  if (bearerFromEnv) {
+    token = bearerFromEnv;
+    if (!apiKey) {
+      console.error('With DM_ACCESS_TOKEN, set IMS_CLIENT_ID for X-Api-Key (same as OAuth client ID).');
+      process.exit(1);
+    }
+  } else {
+    token = await getImsToken(clientId, clientSecret, scopes);
+    apiKey = clientId;
+  }
   const payload = buildSearchBody(searchText, limit);
 
   const res = await fetch(searchUrl, {
@@ -117,7 +136,7 @@ Add them to io-runtime/.env or export before running.`);
       'Content-Type': 'application/json',
       Accept: 'application/json',
       Authorization: `Bearer ${token}`,
-      'X-Api-Key': clientId,
+      'X-Api-Key': apiKey,
     },
     body: JSON.stringify(payload),
   });

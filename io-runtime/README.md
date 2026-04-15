@@ -106,10 +106,16 @@ aio app run
 
 ### Dynamic Media asset search (`POST /adobe/assets/search`)
 
-From `io-runtime/`, set delivery host and IMS OAuth (same credentials as `get-token`):
+From `io-runtime/`, set the delivery host and authenticate using **either** a bearer token from env **or** IMS client credentials (same as `get-token`):
 
 ```env
 DM_DELIVERY_URL=https://delivery-pXXXX-eYYYY.adobeaemcloud.com
+
+# Option A — no IMS, no get-token URL
+DM_ACCESS_TOKEN=eyJ...
+IMS_CLIENT_ID=...   # still required as X-Api-Key
+
+# Option B — client credentials to IMS (no get-token URL)
 IMS_CLIENT_ID=...
 IMS_CLIENT_SECRET=...
 ```

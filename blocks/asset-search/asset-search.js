@@ -17,6 +17,8 @@
 const CONFIG = {
   deliveryUrl: '',
   runtimeEndpoint: '',
+  /** When row 1 is not an http(s) URL, used as Bearer token (e.g. dev token from env) */
+  bearerToken: '',
   clientId: '',
   pageSize: 20,
 };
@@ -56,12 +58,22 @@ const STATE = {
 // API SERVICE
 // =============================================================================
 
+function isHttpUrl(value) {
+  return /^https?:\/\//i.test((value || '').trim());
+}
+
 /**
- * Fetch access token from I/O Runtime endpoint
+ * Fetch access token from I/O Runtime endpoint, or use a static bearer from block config
  * Uses cached token if still valid, otherwise fetches a new one
  * @returns {Promise<string>} Access token
  */
 async function getAccessToken() {
+  if (CONFIG.bearerToken) {
+    // eslint-disable-next-line no-console
+    console.log('[Asset Search] Using bearer token from block (no get-token URL)');
+    return CONFIG.bearerToken.trim();
+  }
+
   // Check if we have a valid cached token (with 5 minute buffer)
   const bufferMs = 5 * 60 * 1000; // 5 minutes
   if (TOKEN_CACHE.accessToken && TOKEN_CACHE.expiresAt > Date.now() + bufferMs) {
@@ -72,7 +84,7 @@ async function getAccessToken() {
 
   // Fetch new token from I/O Runtime
   if (!CONFIG.runtimeEndpoint) {
-    throw new Error('Runtime endpoint not configured');
+    throw new Error('Runtime endpoint or bearer token not configured');
   }
 
   // eslint-disable-next-line no-console
@@ -1130,8 +1142,8 @@ async function executeSearch() {
   if (STATE.isLoading) return;
 
   // Validate configuration
-  if (!CONFIG.deliveryUrl || !CONFIG.runtimeEndpoint || !CONFIG.clientId) {
-    showError('Block not configured. Please set Delivery URL, Runtime Endpoint, and Client ID in Universal Editor.');
+  if (!CONFIG.deliveryUrl || !CONFIG.clientId || (!CONFIG.runtimeEndpoint && !CONFIG.bearerToken)) {
+    showError('Block not configured. Please set Delivery URL, Client ID, and either an I/O Runtime get-token URL or a bearer token in Universal Editor.');
     return;
   }
 
@@ -1172,7 +1184,7 @@ async function executeSearch() {
  *
  * Expected block structure from UE:
  * - Row 0: Delivery URL (single column with URL or link)
- * - Row 1: Bearer Key (single column with token)
+ * - Row 1: I/O Runtime get-token URL (https://...) **or** a static Bearer access token
  * - Row 2: Client ID (single column with client ID)
  * - Row 3: Page Size (optional, single column with number)
  * - Row 4+: Category pills (two columns: label | filterValue)
@@ -1193,9 +1205,12 @@ function parseBlockContent(block) {
   };
 
   // Configuration from first 4 rows (by position)
+  const row1 = getCellText(rows[1]?.children[0]);
+  const useUrl = isHttpUrl(row1);
   const config = {
     deliveryUrl: getCellText(rows[0]?.children[0]),
-    runtimeEndpoint: getCellText(rows[1]?.children[0]),
+    runtimeEndpoint: useUrl ? row1 : '',
+    bearerToken: useUrl ? '' : row1,
     clientId: getCellText(rows[2]?.children[0]),
     pageSize: parseInt(getCellText(rows[3]?.children[0]), 10) || 20,
   };
@@ -1232,6 +1247,7 @@ export default async function decorate(block) {
   console.log('[Asset Search] Config:', {
     deliveryUrl: CONFIG.deliveryUrl ? '✓ Set' : '✗ Missing',
     runtimeEndpoint: CONFIG.runtimeEndpoint ? '✓ Set' : '✗ Missing',
+    bearerToken: CONFIG.bearerToken ? '✓ Set' : '✗ Missing',
     clientId: CONFIG.clientId ? '✓ Set' : '✗ Missing',
     pageSize: CONFIG.pageSize,
   });

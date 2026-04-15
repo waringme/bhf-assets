@@ -47,8 +47,8 @@
           "component": "text",
           "valueType": "string",
           "name": "runtimeEndpoint",
-          "label": "Runtime Endpoint",
-          "description": "Adobe I/O Runtime get-token endpoint URL (e.g., https://xxxxx.adobeioruntime.net/api/v1/web/sage-portal/get-token)"
+          "label": "Runtime endpoint or bearer token",
+          "description": "If this value starts with https://, it is treated as the Adobe I/O Runtime get-token URL. Otherwise it is used as a static Bearer access token (e.g. from local env for development)."
         },
         {
           "component": "text",
