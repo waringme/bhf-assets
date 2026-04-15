@@ -58,6 +58,33 @@ const STATE = {
 // API SERVICE
 // =============================================================================
 
+/**
+ * Prints delivery URL, search URL, X-Api-Key (client id), and bearer token to the
+ * browser console for debugging. Contains secrets — remove or gate for production.
+ * @param {string} contextLabel - Where this was logged from
+ * @param {Object} [extras] - Optional details (e.g. userMessage, httpStatus, bodySnippet)
+ */
+function logAssetSearchAuthDebug(contextLabel, extras = {}) {
+  /* eslint-disable no-console */
+  const base = (CONFIG.deliveryUrl || '').replace(/\/+$/, '');
+  const bearer = (CONFIG.bearerToken && CONFIG.bearerToken.trim())
+    || TOKEN_CACHE.accessToken
+    || '';
+  console.groupCollapsed(`[Asset Search] Debug — ${contextLabel}`);
+  console.log('deliveryUrl:', CONFIG.deliveryUrl || '(empty)');
+  console.log('search POST URL:', base ? `${base}/adobe/assets/search` : '(empty)');
+  console.log('clientId (X-Api-Key):', CONFIG.clientId || '(empty)');
+  if (CONFIG.runtimeEndpoint) {
+    console.log('get-token URL:', CONFIG.runtimeEndpoint);
+  }
+  console.log('Bearer token:', bearer || '(none yet)');
+  if (extras.userMessage) console.log('error message:', extras.userMessage);
+  if (extras.httpStatus != null) console.log('HTTP status:', extras.httpStatus);
+  if (extras.bodySnippet) console.log('response body (truncated):', extras.bodySnippet);
+  console.groupEnd();
+  /* eslint-enable no-console */
+}
+
 function isHttpUrl(value) {
   return /^https?:\/\//i.test((value || '').trim());
 }
@@ -99,12 +126,21 @@ async function getAccessToken() {
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
-    throw new Error(errorData.message || `Token request failed: ${response.status}`);
+    const msg = errorData.message || `Token request failed: ${response.status}`;
+    logAssetSearchAuthDebug('get-token HTTP error', {
+      userMessage: msg,
+      httpStatus: response.status,
+      bodySnippet: JSON.stringify(errorData).slice(0, 800),
+    });
+    throw new Error(msg);
   }
 
   const data = await response.json();
 
   if (!data.access_token) {
+    logAssetSearchAuthDebug('get-token JSON missing access_token', {
+      bodySnippet: JSON.stringify(data).slice(0, 800),
+    });
     throw new Error('No access token in response');
   }
 
@@ -207,6 +243,11 @@ async function searchAssets(options = {}) {
 
   if (!response.ok) {
     const errorText = await response.text();
+    logAssetSearchAuthDebug('DM search HTTP error', {
+      userMessage: `API Error ${response.status}`,
+      httpStatus: response.status,
+      bodySnippet: errorText.slice(0, 800),
+    });
     throw new Error(`API Error ${response.status}: ${errorText}`);
   }
 
@@ -1114,6 +1155,7 @@ function parseErrorMessage(message) {
  * @param {string} message - Error message
  */
 function showError(message) {
+  logAssetSearchAuthDebug('showError (user-facing message)', { userMessage: message });
   const grid = document.querySelector('.asset-search-grid');
   if (!grid) return;
 
