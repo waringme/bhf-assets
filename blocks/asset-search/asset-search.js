@@ -127,21 +127,20 @@ async function getAccessToken() {
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
     const msg = errorData.message || `Token request failed: ${response.status}`;
-    logAssetSearchAuthDebug('get-token HTTP error', {
-      userMessage: msg,
-      httpStatus: response.status,
-      bodySnippet: JSON.stringify(errorData).slice(0, 800),
-    });
-    throw new Error(msg);
+    const err = new Error(msg);
+    err._httpStatus = response.status;
+    err._snippet = JSON.stringify(errorData).slice(0, 800);
+    err._debugContext = 'get-token HTTP error';
+    throw err;
   }
 
   const data = await response.json();
 
   if (!data.access_token) {
-    logAssetSearchAuthDebug('get-token JSON missing access_token', {
-      bodySnippet: JSON.stringify(data).slice(0, 800),
-    });
-    throw new Error('No access token in response');
+    const err = new Error('No access token in response');
+    err._snippet = JSON.stringify(data).slice(0, 800);
+    err._debugContext = 'get-token JSON missing access_token';
+    throw err;
   }
 
   // Cache the token
@@ -243,12 +242,11 @@ async function searchAssets(options = {}) {
 
   if (!response.ok) {
     const errorText = await response.text();
-    logAssetSearchAuthDebug('DM search HTTP error', {
-      userMessage: `API Error ${response.status}`,
-      httpStatus: response.status,
-      bodySnippet: errorText.slice(0, 800),
-    });
-    throw new Error(`API Error ${response.status}: ${errorText}`);
+    const err = new Error(`API Error ${response.status}: ${errorText}`);
+    err._httpStatus = response.status;
+    err._snippet = errorText.slice(0, 800);
+    err._debugContext = 'DM search HTTP error';
+    throw err;
   }
 
   const data = await response.json();
